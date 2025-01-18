@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>adhome</title>
+    <link rel="stylesheet" href="index.css">
+    <!-- <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;1,400&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: white;
+        }
+        
+        html {
+            font-size: 62.5%;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        li {
+            list-style: none;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        .header {
+            position: fixed;
+            font-family: 'Poppins', sans-serif;
+            /* Membuat header tetap di atas saat scroll */
+            top: 0;
+            /* Posisi di bagian atas */
+            left: 0;
+            width: 100%;
+            /* Meluas secara penuh */
+            z-index: 1000;
+            /* Agar berada di atas elemen lain */
+            border-bottom: 1px solid #E2E8F0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            background-color: white;
+            font-weight: 600;
+            line-height: 0.9;
+            /* Pastikan memiliki warna latar */
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: .6rem .6rem;
+            z-index: 1000;
+            position: relative;
+        }
+        
+        .hamburger {
+            display: none;
+        }
+        
+        .hamburger {
+            background: linear-gradient(270deg, #036E89, #369CB0);
+            /* Warna latar belakang biru */
+            padding: 3px 5px;
+            /* Beri sedikit ruang untuk garis-garis */
+            border-radius: 5px;
+            /* Tambahkan border-radius untuk sudut yang lembut */
+            cursor: pointer;
+            display: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .bar {
+            display: block;
+            width: 24px;
+            height: 3px;
+            margin: 5px auto;
+            -webkit-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+            /* background-color: #101010; */
+            background-color: white;
+        }
+        
+        .nav-menu {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-item {
+            margin-left: 5rem;
+        }
+        
+        .nav-item a {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            line-height: .8;
+        }
+        
+        .nav-link {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            line-height: 1;
+            /* font-size: 1.6rem; */
+            font-size: 2rem;
+            font-weight: 400;
+            /* color: #475569; */
+            color: black;
+            /* change */
+        }
+        
+        .nav-link:hover {
+            color: #369CB0;
+        }
+        
+        .nav-logo img {
+            text-decoration: none;
+            width: 200px;
+            /* Ukuran logo, sesuaikan jika perlu */
+            height: auto;
+            margin-right: 10px;
+            margin-left: 30px;
+            /* Memberikan jarak antara logo dan teks */
+        }
+        
+        .action-btn {
+            background: linear-gradient(270deg, #099abe 30%, #369CB0 70%);
+            /* Latar awal gradasi */
+            color: white;
+            /* Warna teks */
+            padding: 20px 30px;
+            /* Spasi di dalam tombol */
+            border-radius: 5px;
+            /* Membuat sudut melengkung */
+            font-size: 1.6rem;
+            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.6);
+            /* Ukuran font */
+            font-weight: bold;
+            /* Membuat teks tebal */
+            text-decoration: none;
+            /* Menghilangkan underline */
+            /* Margin kiri */
+            margin-right: 30px;
+            /* Margin kanan */
+            /* Efek transisi untuk hover */
+            /* Border transparan */
+            display: inline-block;
+            /* Agar tombol terlihat rapi */
+            text-align: center;
+            /* Pusatkan teks */
+            cursor: pointer;
+            /* Ubah kursor menjadi pointer */
+        }
+        
+        .action-btn:hover {
+            background: white;
+            /* Pastikan seluruh properti background diganti */
+            color: #369CB0;
+            /* Teks berubah menjadi biru */
+            border: 2px solid #369CB0;
+            text-shadow: none;
+        }
+        
+        @media only screen and (max-width: 768px) {
+            header {
+                padding: 0.5rem;
+                box-shadow: none;
+                margin-top: -0.7rem;
+                padding-top: 0.7rem;
+                left: 0;
+                right: 0;
+            }
+            .action-btn {
+                padding: 12px 14px;
+                font-size: 1.3rem;
+                margin: 0;
+                margin-right: -5rem;
+                margin-left: 0;
+            }
+            .nav-logo img {
+                width: 120px;
+                height: auto;
+                margin: 0;
+            }
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 5rem;
+                flex-direction: column;
+                /* background-color: #fff; */
+                background-color: white;
+                width: 100%;
+                transition: 0.3s;
+                text-align: left;
+                box-shadow: 0 8px 15px rgba(0, 0, 0, 0.03);
+            }
+            .nav-link {
+                color: black;
+            }
+            .nav-menu.active {
+                left: 0;
+            }
+            .nav-item {
+                margin: 1rem 0;
+                width: 100%;
+                text-align: left;
+                margin-left: 20px;
+                padding-bottom: 8px;
+                border-bottom: none;
+                line-height: 1;
+            }
+            .nav-menu.active .nav-item {
+                border-bottom: 2px solid rgba(0, 0, 0, 0.025);
+                /* Garis bawah hitam */
+            }
+            .hamburger {
+                display: block;
+                cursor: pointer;
+            }
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+        }
+        
+        @media only screen and (max-width: 768px) {
+            .action-btn {
+                margin-left: 5rem;
+            }
+        }
+        
+        .home .home-box {
+            width: 100%;
+            height: 110vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url(homebg.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            margin-top: 5rem;
+        }
+        /* nav akhir */
+        
+        .home .home-box .content {
+            width: 100%;
+            height: calc(100% - 65px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        
+        .home .home-box .content h5 {
+            text-transform: uppercase;
+            color: white;
+            font-size: .9rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            margin-top: 9rem;
+        }
+        
+        .home .home-box .content h1 {
+            font-size: 4rem;
+            max-width: 50rem;
+            color: white;
+            /* Warna utama teks */
+            text-align: center;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            text-shadow: /* Bayangan utama */
+            4px 4px 0 rgba(0, 0, 0, 0.4);
+            /* Opsional: Bayangan lembut */
+        }
+        
+        .home .home-box .content p {
+            color: white;
+            font-weight: 300;
+            max-width: 40rem;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .cta {
+            margin-top: 1rem;
+            display: inline-block;
+            height: 10px;
+            padding: 2rem 4rem;
+            font-size: 1.5rem;
+            color: white;
+            background: linear-gradient(270deg, #036E89 30%, #369CB0 70%);
+            border-radius: 30px;
+            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.6);
+            box-shadow: 1px 1px 3px rgba(1, 1, 3, 0.5);
+            position: relative;
+            /* Dibutuhkan untuk efek tambahan */
+            overflow: hidden;
+            text-align: left;
+            /* Menghindari elemen glitch keluar dari tombol */
+        }
+        
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            /* Awal di luar tombol */
+            width: 150%;
+            /* Lebih lebar dari tombol untuk efek smooth */
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: skewX(-45deg);
+            /* Efek miring */
+            animation: glitch-light 2s infinite;
+            z-index: 1;
+            pointer-events: none;
+            /* Jangan mengganggu interaksi tombol */
+        }
+        
+        .cta:hover {
+            background: transparent;
+            border: 1px solid #036E89;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .cta {
+                padding: 2rem 4rem;
+                height: auto;
+                /* Lebih kecil untuk layar HP */
+                font-size: 1.3rem;
+                /* Ukuran font lebih kecil */
+                border-radius: 20px;
+                /* Radius lebih kecil agar sesuai layar kecil */
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .cta {
+                padding: 2rem 4rem;
+                height: auto;
+                /* Lebih kecil untuk layar HP */
+                font-size: 1.3rem;
+                /* Ukuran font lebih kecil */
+                border-radius: 20px;
+                /* Radius lebih kecil agar sesuai layar kecil */
+            }
+            header {
+                padding: 0.5rem;
+                box-shadow: none;
+                margin-top: -0.7rem;
+                padding-top: 0.7rem;
+                left: 0;
+                right: 0;
+            }
+        }
+        
+        .o {
+            padding-bottom: 35px;
+        }
+        
+        @keyframes glitch-light {
+            0% {
+                left: -150%;
+                /* Mulai dari luar kiri */
+            }
+            50% {
+                left: 100%;
+                /* Bergerak ke luar kanan */
+            }
+            100% {
+                left: 150%;
+                /* Menghilang ke kanan */
+            }
+        }
+        /* Property Card Start */
+        
+        .main-card {
+            width: 800px;
+            max-height: none;
+            height: 180px;
+            margin: 20px auto;
+            padding: 1rem;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.306);
+            transition: all 0.3s ease;
+            border-radius: 20px;
+        }
+        
+        .property-section {
+            text-align: center;
+            margin: 10px 0;
+            margin-bottom: 5px;
+        }
+        
+        .property-section .property-cards {
+            display: flex;
+            justify-content: flex-start;
+            gap: 15px;
+            /* Responsif untuk semua perangkat */
+        }
+        
+        .property-section h2 {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: -1rem;
+        }
+        
+        .property-section p {
+            font-size: 15px !important;
+            color: black;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-weight: 400;
+            margin-left: 19.1rem;
+        }
+        
+        .property-cards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: nowrap;
+            gap: 10px;
+            overflow-x: hidden;
+            /* Menghilangkan scroll horizontal */
+            padding: 10px;
+            cursor: pointer;
+        }
+        
+        .property-card {
+            border: 2px solid black;
+            border-radius: 8px;
+            width: 140px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            background-color: #fff;
+            flex-shrink: 0;
+            height: 90px;
+            border-radius: 40px;
+            margin-top: -1rem;
+        }
+        
+        .card-header {
+            background-color: #777777c9;
+            font-size: 12px;
+            font-weight: bold;
+            color: black;
+            padding: 5px;
+            border-radius: 10px;
+        }
+        
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            /* Susun elemen secara vertikal */
+            align-items: center;
+            /* Teks dan gambar berada di tengah */
+            justify-content: center;
+            /* Posisikan elemen di tengah secara vertikal */
+            padding: 0;
+            /* Hilangkan padding yang tidak diperlukan */
+            margin-top: 10px;
+        }
+        
+        .property-icon {
+            margin-top: -5px;
+            width: 50px;
+            height: 50px;
+            margin-bottom: -10px;
+            /* Memberikan jarak antara gambar dan teks */
+        }
+        
+        .property-card .card-body p {
+            margin-top: 15px;
+            /* Menambahkan jarak di atas teks p */
+            color: black;
+            font-weight: 400;
+        }
+        
+        .property-card p {
+            font-size: 12px;
+            font-weight: bold;
+            margin: 0;
+            font-weight: 800;
+        }
+        /* Media Query untuk perangkat kecil */
+        
+        @media (max-width: 768px) {
+            .home .home-box {
+                margin-top: -5rem;
+            }
+            .home .home-box .content h1 {
+                font-size: 3.5rem;
+            }
+            .o {
+                padding-bottom: 20px;
+            }
+            .main-card {
+                width: 90%;
+                padding: 1rem;
+                max-height: none;
+                height: 165px;
+                border-radius: 20px;
+            }
+            .property-section .property-cards {
+                padding-left: 5%;
+            }
+            .property-section h2 {
+                padding-right: 10px;
+                /* Mengurangi padding kanan untuk lebih responsif */
+                margin-bottom: 10px;
+                /* Memberikan jarak antar elemen */
+            }
+            .property-section p {
+                padding-right: 10px;
+                /* Mengurangi padding kanan agar tidak terlalu jauh */
+                margin-bottom: 5px;
+                margin-left: 0;
+                font-size: 10px;
+                /* Memberikan jarak antar elemen */
+            }
+            .card-body {
+                padding: 0px;
+                /* Menghapus padding negatif yang mungkin menyebabkan masalah */
+                margin-top: 5px;
+                /* Menambahkan sedikit jarak di atas elemen */
+            }
+            .property-cards {
+                gap: 10px;
+                /* Jarak antar kartu lebih proporsional */
+                padding-left: 20px;
+                /* Mengurangi padding kiri agar lebih rapi */
+            }
+            .property-card {
+                margin-top: 0;
+                width: 120px;
+                height: 90px;
+                padding: -5px;
+                border-radius: 30px;
+            }
+            .property-icon {
+                margin-top: 10px;
+                width: 42px;
+                height: 42px;
+                margin-bottom: 5px;
+            }
+            .property-card p {
+                font-size: 11px;
+                margin-top: 5px;
+                padding: -10px;
+                text-align: center;
+                display: flex;
+                margin-left: 1rem;
+                /* Menambahkan jarak atas agar lebih konsisten */
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .main-card {
+                width: 95%;
+                max-height: 300px;
+                padding: 10px;
+                /* Menambahkan padding agar terlihat lebih rapi */
+            }
+            .property-section .property-cards {
+                padding-left: 2%;
+            }
+            .property-section h2 {
+                font-size: 20px;
+                text-align: center;
+                margin-bottom: 8px;
+                /* Menambah jarak antar elemen */
+            }
+            .property-section p {
+                font-size: 14px;
+                text-align: center;
+                margin-bottom: 8px;
+                /* Menambah jarak antar elemen */
+            }
+            .property-cards {
+                gap: 8px;
+                /* Jarak antar kartu lebih kecil di layar kecil */
+                padding: 0 10px;
+                border-radius: 10px;
+                /* Memberikan ruang tepi kiri dan kanan */
+            }
+            .property-card {
+                width: 120px;
+                height: 80px;
+            }
+            .property-icon {
+                width: 42px;
+                height: 42px;
+                margin-top: 2px;
+                margin-bottom: -13px;
+            }
+            .property-card p {
+                font-size: 8px;
+                margin-top: 3px;
+                /* Menambah sedikit jarak antar teks */
+            }
+        }
+        /* Property Card End */
+        /* footer section starts here  */
+        
+        footer {
+            width: 100%;
+        }
+        
+        footer .footer {
+            background: rgb(239, 238, 238);
+            padding: 6rem 7rem;
+            padding-bottom: 1rem;
+        }
+        
+        footer .footer .container {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid black;
+            gap: 2rem;
+        }
+        
+        footer .footer .container .detail {
+            max-width: 32rem;
+        }
+        
+        footer .footer .container .detail h3 img {
+            width: 180px;
+            height: auto;
+        }
+        
+        footer .footer .container .detail p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: rgba(0, 0, 0, 0.8);
+            margin-bottom: 2rem;
+        }
+        
+        footer .footer .container .detail h5 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: black;
+        }
+        
+        footer .footer .container .detail a {
+            color: rgba(0, 0, 0, 0.8);
+            font-size: 1rem;
+            border-bottom: 2px solid #00cee4;
+            padding: 1px 0;
+            display: inline-block;
+        }
+        
+        footer .footer .container .detail .social {
+            display: flex;
+            gap: .8rem;
+            margin-top: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        footer .footer .container .detail .social a {
+            border: none;
+            font-size: 1.3rem;
+            color: #333;
+        }
+        
+        footer .footer .container h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: .5rem;
+            color: black;
+        }
+        
+        footer .footer .container li {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        
+        footer .footer .container a {
+            color: rgba(0, 0, 0, 0.8);
+            font-size: 1.4rem;
+        }
+        
+        footer .footer .container a:hover {
+            color: black;
+        }
+        
+        footer .footer .container span {
+            color: black;
+            background: #00cee4;
+            font-size: .9rem;
+            padding: .1rem .5rem;
+            border-radius: .3rem;
+            font-weight: 500;
+        }
+        
+        footer .footer .copyright {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            font-size: .9rem;
+            color: rgba(0, 0, 0, 0.8);
+            text-align: center;
+        }
+        
+        footer .footer .copyright a {
+            color: rgba(0, 0, 0, 0.8);
+            margin-left: 1rem;
+            text-align: center;
+        }
+        
+        @media (max-width: 1020px) {
+            footer .footer {
+                padding: 2rem;
+            }
+        }
+        
+        @media (max-width: 910px) {
+            footer .footer .container {
+                flex-direction: column;
+            }
+        }
+        
+        .pad1 {
+            padding: 1rem;
+        }
+        
+        .intro-wrapper {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            /* Mengubah arah flex menjadi kolom */
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: white;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            transition: background 1s ease-in-out;
+        }
+        
+        .gambar {
+            max-width: 150px;
+            margin-bottom: 20px;
+            /* Memberikan jarak antara gambar dan teks */
+        }
+        
+        .intro-text {
+            font-size: 60px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            position: relative;
+            color: white;
+            animation: glitch 2.5s infinite;
+        }
+        
+        .intro-text::before,
+        .intro-text::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            overflow: hidden;
+            clip-path: inset(0 0 0 0);
+        }
+        
+        .intro-text::before {
+            color: #369CB0;
+            animation: glitchBefore 2.5s infinite;
+        }
+        
+        .intro-text::after {
+            color: #222;
+            animation: glitchAfter 2.5s infinite;
+        }
+        
+        @keyframes glitch {
+            0% {
+                transform: none;
+            }
+            33% {
+                transform: skew(-2deg, -2deg);
+            }
+            66% {
+                transform: skew(2deg, 2deg);
+            }
+            100% {
+                transform: none;
+            }
+        }
+        
+        @keyframes glitchBefore {
+            0% {
+                clip-path: inset(0 0 50% 0);
+                transform: translate(-2px, -2px);
+            }
+            50% {
+                clip-path: inset(30% 0 30% 0);
+                transform: translate(2px, 2px);
+            }
+            100% {
+                clip-path: inset(0 0 50% 0);
+                transform: translate(-2px, -2px);
+            }
+        }
+        
+        @keyframes glitchAfter {
+            0% {
+                clip-path: inset(50% 0 0 0);
+                transform: translate(2px, 2px);
+            }
+            50% {
+                clip-path: inset(30% 0 30% 0);
+                transform: translate(-2px, -2px);
+            }
+            100% {
+                clip-path: inset(50% 0 0 0);
+                transform: translate(2px, 2px);
+            }
+        }
+        
+        .bus-wrapper {
+            display: none;
+        }
+        
+        .bus-wrapper.show {
+            display: block;
+        }
+        /* footer section ends here  */
+    </style>
+</head>
+
+<body>
+    <div class="intro-wrapper" id="intro-wrapper">
+        <img src="logofix.jpg" alt="Logo" class="gambar">
+        <!-- Add your image source here -->
+        <div class="intro-text" data-text="AD.Home">AD.Home</div>
+    </div>
+    <div class="bus-wrapper" id="bus-wrapper">
+        <header class="header">
+            <nav class="navbar">
+                <a href="#" class="nav-logo"><img src="logofix.jpg" alt=""></a>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">bank developer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+                <a href="#" class="action-btn">Hubungi Kami</a>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </header>
+        <!-- home section starts here  -->
+        <section class="home">
+            <div class="home-box">
+                <div class="content">
+                    <h5><span style="color: #369CB0; ">ad</span>.home</h5>
+                    <h1>Cari dan Miliki Hunian Impianmu</h1>
+                    <p style="  text-shadow: 
+            2px 2px 0 rgba(0, 0, 0, 0.5);">Wujudkan hunian Impianmu dengan cara yang mudah dan berbagai macam pilihan</p>
+
+
+                    <!-- property start -->
+                    <div class="main-card">
+                        <div class="property-section">
+                            <h2>Tipe Properti</h2>
+                            <p style="color: black; text-align: center;">Cari properti baru dan secondary di AD.Home</p>
+                            <div class="property-cards">
+                                <div class="property-card">
+
+                                    <div class="card-body">
+                                        <img src="slide (1).jpg" alt="Rumah" class="property-icon" />
+                                        <p style="color: black; font-weight: 700;">Rumah</p>
+                                    </div>
+                                </div>
+                                <div class="property-card">
+
+                                    <div class="card-body">
+                                        <img src="slide (3).jpg" alt="Apartment" class="property-icon" />
+                                        <p style="color: black; font-weight: 700;">Apartment</p>
+                                    </div>
+                                </div>
+                                <div class="property-card">
+
+                                    <div class="card-body">
+                                        <img src="slide (6).jpg" alt="Ruko" class="property-icon" />
+                                        <p style="color: black; font-weight: 700;">Ruko</p>
+                                    </div>
+                                </div>
+                                <div class="property-card">
+
+                                    <div class="card-body">
+                                        <img src="slide (4).jpg" alt="Kavling" class="property-icon" />
+                                        <p style="color: black; font-weight: 700;">Kavling</p>
+                                    </div>
+                                </div>
+                                <div class="property-card">
+
+                                    <div class="card-body">
+                                        <img src="slide (2).jpg" alt="Gudang" class="property-icon" />
+                                        <p style="color: black; font-weight: 700;">Gudang</p>
+                                    </div>
+                                </div>
+                                <div class="property-card">
+
+                                    <div class="card-body">
+                                        <img src="slide (5).jpg" alt="Office" class="property-icon" />
+                                        <p style="color: black; font-weight: 700;">Office</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="profil.html" class="cta o">Tentang Kami </a>
+                    <!-- property end -->
+
+                </div>
+            </div>
+        </section>
+        <!-- home section ends here  -->
+
+
+        <!-- featured section starts here  -->
+        <section class="featured pad1">
+            <div class="gallery">
+                <div class="box ">
+                    <div class="first-box">
+                        <h4 class="label"><span style="color: #369CB0;">AD</span>.Home</h4>
+                        <h2 class="heading">kenyamanan anda <span style="color: #369CB0; text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.18);">proritas</span> kami</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium esse labore,
+                        </p>
+                        <a href="#">Official partner</a>
+                        <div class="image">
+                            <img src="logofix.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="box ">
+                    <img src="bgbg.jpg" alt="">
+                    <div class="content">
+                        <h2>contoh artikel</h2>
+                        <p>Lorem ipsum dolor sit amet.</p>
+                        <div class="review-and-idr">
+                            <div class="review"><i class="fa fa-star"></i> 4.9 | 853 review</div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="box ">
+                    <img src="bgbg.jpg" alt="">
+                    <div class="content">
+                        <h2>contoh artikel</h2>
+                        <p>Lorem ipsum dolor sit amet.</p>
+                        <div class="review-and-idr">
+                            <div class="review"><i class="fa fa-star"></i> 4.9 | 853 review</div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <img src="bgbg.jpg" alt="">
+                    <div class="content">
+                        <h2>contoh artikel</h2>
+                        <p>Lorem ipsum dolor sit amet.</p>
+                        <div class="review-and-idr">
+                            <div class="review"><i class="fa fa-star"></i> 4.9 | 853 review</div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- featured section ends here  -->
+
+
+        <!-- article section starts here  -->
+        <section class="article pad1">
+            <h4 class="label">contoh artikel</h4>
+            <h2 class="heading">contoh artikel</h2>
+            <div class="container">
+                <div class="latest-article">
+                    <img src="bgbg.jpg" alt="">
+                    <p>Lorem, ipsum dolor.</p>
+                    <h3>Lorem ipsum dolor sit amet.</h3>
+
+                </div>
+
+                <div class="more-article">
+                    <div class="box box1">
+                        <div class="image">
+                            <img src="bgbg.jpg" alt="">
+                        </div>
+                        <div class="text">
+                            <h3>contoh artikel</h3>
+                            <li>Lorem ipsum dolor sit amet.</li>
+                        </div>
+                    </div>
+                    <div class="box box2">
+                        <div class="image">
+                            <img src="bgbg.jpg" alt="">
+                        </div>
+                        <div class="text">
+                            <h3>contoh artikel</h3>
+                            <li>Lorem ipsum dolor sit amet.</li>
+                        </div>
+                    </div>
+                    <div class="box box3">
+                        <div class="image">
+                            <img src="bgbg.jpg" alt="">
+                        </div>
+                        <div class="text">
+                            <h3>contoh artikel</h3>
+                            <li>Lorem ipsum dolor sit amet.</li>
+                        </div>
+                    </div>
+                    <div class="box box4">
+                        <div class="image">
+                            <img src="bgbg.jpg" alt="">
+                        </div>
+                        <div class="text">
+                            <h3>contoh artikel</h3>
+                            <li>Lorem ipsum dolor sit amet.</li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- article section ends here  -->
+        <!-- footer section starts here  -->
+        <footer>
+            <section class="footer">
+                <div class="container">
+                    <div class="detail">
+                        <h3><img src="logor.png" alt=""></h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere in, non praesentium soluta quis enim aperiam aliquam, rem totam porro, vel obcaecati modi architecto error maiores iusto quaerat aut eum.</p>
+                        <h5>letak logo ig dll </h5>
+                        <a href="#">@mail.com</a>
+                        <div class="social">
+                            <a href="#"><i class="fa fa-linkedin-square"></i></a>
+                            <a href="#"><i class="fa fa-facebook-square"></i></a>
+                            <a href="#"><i class="fa fa-twitter-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="about-us">
+                        <h4>Menu</h4>
+                        <li><a href="#">about us</a></li>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">official partner<span>lorem</span></a></li>
+
+                    </div>
+                    <div class="about-us">
+                        <h4>help</h4>
+                        <li><a href="#">FAQ</a></li>
+
+                        <li><a href="#">site map</a></li>
+                    </div>
+                    <div class="about-us">
+                        <h4>butuh bantuan ?</h4>
+                        <li><a href="#">contact</a></li>
+
+
+                    </div>
+                </div>
+
+                <div class="copyright">
+                    <div style="color: black; font-weight: 540; text-align: center;">
+                        &copy;2025 - AD.Home all rights reserved
+                    </div>
+                    <div>
+                        <a href="#">FAQ</a>
+
+                    </div>
+                </div>
+            </section>
+        </footer>
+        <a href="https://wa.me/6287877566677" class="whatsapp-float" target="_blank" title="Hubungi kami di WhatsApp">
+            <div class="whatsapp-ripple"></div>
+            <img src="iconwa.png" alt="WhatsApp">
+        </a>
+    </div>
+    <!-- footer section ends here  -->
+    <script>
+        const hamburger = document.querySelector(".hamburger");
+        const navMenu = document.querySelector(".nav-menu");
+
+        hamburger.addEventListener("click", mobileMenu);
+
+        function mobileMenu() {
+            hamburger.classList.toggle("active");
+            navMenu.classList.toggle("active");
+        }
+
+
+
+
+        const navLink = document.querySelectorAll(".nav-link");
+
+        navLink.forEach(n => n.addEventListener("click", closeMenu));
+
+        function closeMenu() {
+            hamburger.classList.remove("active");
+            navMenu.classList.remove("active");
+        }
+
+        const propertyCards = document.querySelector('.property-cards');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        propertyCards.addEventListener('mousedown', (e) => {
+            isDown = true;
+            startX = e.pageX - propertyCards.offsetLeft;
+            scrollLeft = propertyCards.scrollLeft;
+        });
+
+        propertyCards.addEventListener('mouseleave', () => {
+            isDown = false;
+        });
+
+        propertyCards.addEventListener('mouseup', () => {
+            isDown = false;
+        });
+
+        propertyCards.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - propertyCards.offsetLeft;
+            const walk = (x - startX) * 2; // Percepatan geseran
+            propertyCards.scrollLeft = scrollLeft - walk;
+        });
+
+        // Untuk perangkat sentuh (mobile)
+        let touchStartX;
+        let touchScrollLeft;
+
+        propertyCards.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].pageX - propertyCards.offsetLeft;
+            touchScrollLeft = propertyCards.scrollLeft;
+        });
+
+        propertyCards.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            const touchMoveX = e.touches[0].pageX - propertyCards.offsetLeft;
+            const walk = (touchMoveX - touchStartX) * 2; // Percepatan geseran
+            propertyCards.scrollLeft = touchScrollLeft - walk;
+        });
+    </script>
+    <script>
+        // Handle the intro animation and show bus content after 3 seconds
+        setTimeout(() => {
+            document.getElementById('intro-wrapper').style.display = 'none'; // Hide the intro animation
+            document.getElementById('bus-wrapper').classList.add('show'); // Show the bus content
+        }, 3000); // 3 seconds delay for the animation
+    </script>
+</body>
+
+</html>
